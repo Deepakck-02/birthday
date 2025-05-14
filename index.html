@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -242,6 +243,49 @@
       pointer-events: none;
       z-index: 3;
     }
+    
+    
+     /* 1. Responsive typography */
+    h1 {
+      font-size: clamp(2rem, 8vw, 5em);
+      overflow-wrap: break-word;
+    }
+
+    /* 2. Fluid gift container */
+    .gift-container {
+      width: 50vw;
+      max-width: 300px;
+      bottom: 5vh;
+    }
+
+    /* 3. Fluid box & image */
+    .box {
+      width: 50vw;
+      max-width: 200px;
+    }
+    .box-body .img {
+      width: 40vw;
+      max-width: 150px;
+    }
+
+    /* 4. Media queries */
+    @media (max-width: 768px) {
+      h1 { top: 15%; }
+      .gift-container { width: 60vw; bottom: 3vh; }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        top: 10%;
+        font-size: clamp(1.2rem, 12vw, 3em);
+      }
+      .gift-container { width: 80vw; }
+      .box { width: 60vw; }
+      .box-body .img { width: 50vw; }
+    }
+    
+    
+    
   </style>
 </head>
 <body>
@@ -442,6 +486,20 @@
     document.querySelector('.box-body').addEventListener('mouseenter', function() {
       popConfetti();
     });
+    
+    
+    // 5. Responsive canvas resizing
+    function resizeCanvases() {
+      document.querySelectorAll('canvas').forEach(c => {
+        c.width  = window.innerWidth;
+        c.height = window.innerHeight;
+      });
+    }
+    window.addEventListener('resize', resizeCanvases);
+    window.addEventListener('DOMContentLoaded', resizeCanvases);
+    
+    
+    
   </script>
 </body>
 </html>
